@@ -8,7 +8,7 @@
 
 
 const { createFilePath } = require(`gatsby-source-filesystem`)
-const { path } = require("path")
+const  path  = require("path")
  //Adiciona o campo SLUG para cada post
 exports.onCreateNode = ({ node, getNode, actions }) => { 
   const { createNodeField } = actions

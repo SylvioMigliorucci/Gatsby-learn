@@ -1,15 +1,14 @@
 import React from "react"
-import {useStaticQuery, graphql} from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/Layout"
 import SEO from "../components/seo"
-import PostItem from "../components/PostItem";
+import PostItem from "../components/PostItem"
 
 const IndexPage = () => {
   //allMarkdownRemark tem q ser obrigatoriamente o nome da constante para o uso correto do array allMarkdownRemark.edges
-  const {allMarkdownRemark} = useStaticQuery(graphql`
-
+  const { allMarkdownRemark } = useStaticQuery(graphql`
     query PostList {
-      allMarkdownRemark {
+      allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
         edges {
           node {
             frontmatter {
@@ -27,7 +26,6 @@ const IndexPage = () => {
         }
       }
     }
-    
   `)
 
   const postList = allMarkdownRemark.edges
@@ -35,15 +33,15 @@ const IndexPage = () => {
   return (
     <Layout>
       <SEO title="Home" />
-      {postList.map(({
-        node: {
-          frontmatter: { background, category, description, date, title},
-          timeToRead,
-          fields: {slug}
-        }
-      }) => (
-
-         <PostItem 
+      {postList.map(
+        ({
+          node: {
+            frontmatter: { background, category, description, date, title },
+            timeToRead,
+            fields: { slug },
+          },
+        }) => (
+          <PostItem
             slug={slug}
             category={category}
             date={date}
@@ -51,11 +49,9 @@ const IndexPage = () => {
             description={description}
             title={title}
             timeToRead={timeToRead}
-
-         
-         />
-      ))}
-
+          />
+        )
+      )}
     </Layout>
   )
 }

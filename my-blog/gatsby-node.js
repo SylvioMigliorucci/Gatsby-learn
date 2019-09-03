@@ -40,30 +40,55 @@ exports.createPages = ({ graphql, actions }) => {
     // products, portfolio items, landing pages, etc.
     // Variables can be added as the second function parameter
     return graphql(`
-    query Post {
-        allMarkdownRemark {
-          edges {
-            node {
-              fields {
-                slug
+    query PostList {
+        allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
+            edges {
+              node {
+                fields {
+                  slug
+                }
+                frontmatter {
+                  background
+                  category
+                  date(locale: "pt-br", formatString: "DD [de] MMMM [de] YYYY")
+                  description
+                  title
+                }
+                timeToRead
+              }
+              next {
+                frontmatter {
+                  title
+                }
+                fields { 
+                  slug
+                }
+              }
+              previous {
+                frontmatter {
+                  title
+                }
+                fields {
+                  slug
+                }
               }
             }
           }
         }
-      }
     `).then(result => {
       if (result.errors) {
         throw result.errors
       }
   
       // Create blog post pages.
-      result.data.allMarkdownRemark.edges.forEach(({node}) => {
+      const posts = result.data.allMarkdownRemark.edges
+      posts.forEach(({node, next, previous}) => {
         createPage({
           // Path for this page — required
           path: `${node.fields.slug}`,
           component: blogPostTemplate,
           context: {
-              slug: node.fields.slug
+              slug: node.fields.slug,
             // Add optional context data to be inserted
             // as props into the page component..
             //
@@ -72,8 +97,28 @@ exports.createPages = ({ graphql, actions }) => {
             //
             // The page "path" is always available as a GraphQL
             // argument.
+              previousPost: previous,
+              nextPost: next
           },
         })
+      })
+
+      const postsPerPage = 5
+      const numPages = Math.ceil(posts.length / postsPerPage); //arredonda a conta para o numero maior
+
+      Array.from({length: numPages}).forEach((_, index) => {
+          createPage({
+              path: index === 0 ? `/` : `/page/${index + 1}`,   //logica q define a page 1 como "/" e restante com numeros
+              component: path.resolve(`./src/template/blog-list.js`),
+              context: {
+                  limit: postsPerPage,
+                  skip: index * postsPerPage,
+                  numPages,
+                  currentPage: index + 1
+
+
+              }
+            })
       })
     })
   }

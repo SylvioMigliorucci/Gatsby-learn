@@ -22,7 +22,7 @@ const PostsQuery = `
 }
 `
 
-const flatten = arr => {
+const flatten = arr => 
   arr.map(({ node: { frontmatter, ...rest } }) => ({
     ...frontmatter,
     date_timestamp: parseInt(
@@ -30,7 +30,7 @@ const flatten = arr => {
     ),
     ...rest,
   }))
-}
+
 
 const queries = [
   {

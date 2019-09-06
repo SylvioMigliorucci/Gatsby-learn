@@ -8,6 +8,7 @@ module.exports = {
     description: `Membro do time da MidiaSimples, escrevendo sobre tudo que eu aprendo depois aqui com vcs. Sempre compartilhando conhecimento.`,
     position: `FullStack Developer`,
     author: `@sylviomigliorucci`,
+    siteUrl: `https://www.johndoe.com.br`,
   },
   plugins: [
     `gatsby-plugin-styled-components`,
@@ -84,17 +85,18 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `Sylvio Migliorucci`,
+        short_name: `Sylvio`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/avatar.jpg`, // This path is relative to the root of the site.
       },
     },
+    `gatsby-plugin-sitemap`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 }

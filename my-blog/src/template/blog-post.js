@@ -43,7 +43,6 @@ export const query = graphql`
         background
         title
         description
-     
       }
       timeToRead
       html

@@ -69,20 +69,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-plugin-algolia-search`,
-      options: {
-        appId: 'NIHDI844F1',
-        apiKey: '1d32621ec8ecc705d93dde1f99cf6ae1',
-        indexName: 'Posts', // for all queries
-        queries,
-        chunkSize: 1000, // default: 1000
-        settings: {
-          // optional, any index settings
-        },
-        enablePartialUpdates: true, // default: false
-      },
-    },
-    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Sylvio Migliorucci`,

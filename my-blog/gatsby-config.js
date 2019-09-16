@@ -8,6 +8,7 @@ module.exports = {
     description: `Membro do time da MidiaSimples, escrevendo sobre tudo que eu aprendo depois aqui com vcs. Sempre compartilhando conhecimento.`,
     position: `FullStack Developer`,
     author: `@sylviomigliorucci`,
+    siteUrl: `https://www.johndoe.com.br`,
   },
   plugins: [
     `gatsby-plugin-styled-components`,
@@ -67,34 +68,22 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-algolia-search`,
-      options: {
-        appId: 'NIHDI844F1',
-        apiKey: '1d32621ec8ecc705d93dde1f99cf6ae1',
-        indexName: 'Posts', // for all queries
-        queries,
-        chunkSize: 1000, // default: 1000
-        settings: {
-          // optional, any index settings
-        },
-        enablePartialUpdates: true, // default: false
-      },
-    },
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-manifest`,
+    //   options: {
+    //     name: `Sylvio Migliorucci`,
+    //     short_name: `Sylvio`,
+    //     start_url: `/`,
+    //     background_color: `#663399`,
+    //     theme_color: `#663399`,
+    //     display: `minimal-ui`,
+    //     icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+    //   },
+    // },
+    `gatsby-plugin-sitemap`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    `gatsby-plugin-netlify-cms`,
   ],
 }
